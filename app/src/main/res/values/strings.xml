@@ -2,11 +2,19 @@
     <string name="app_name">CurrencyApp</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="main_fragment_label">환율 계산</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sender_country">"송금 국가 : "</string>
+    <string name="receiver_country">"수취 국가 : "</string>
+    <string name="exchange_rate">"환율 : "</string>
+    <string name="timestamp">"조회시간 : "</string>
+    <string name="remittance">"송금액 : "</string>
+
+    <string name="form_country_and_code">"%s (%s)"</string>
+    <string name="form_exchange_rate_code">" %s / %s"</string>
+    <string name="form_amount_received">"수취금액은 %s %s 입니다."</string>
+
+    <string name="btn_ok">확인</string>
+    <string name="btn_cancel">취소</string>
+    <string name="error_remittance_is_invalid">"<font color='red'>송금액이 바르지 않습니다.</font>"</string>
 </resources>
