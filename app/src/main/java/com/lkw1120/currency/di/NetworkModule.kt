@@ -1,6 +1,7 @@
 package com.lkw1120.currency.di
 
 import com.lkw1120.currency.datasource.remote.RemoteDataSource
+import com.lkw1120.currency.datasource.remote.RemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +17,7 @@ class NetworkModule {
     fun provideRemoteDataSource(
 
     ): RemoteDataSource {
-        return RemoteDataSource
+        return RemoteDataSourceImpl()
     }
 
 }

@@ -1,17 +1,23 @@
 package com.lkw1120.currency.datasource.local
 
 import android.content.Context
-import com.lkw1120.currency.datasource.local.dao.CountryDao
+import com.lkw1120.currency.datasource.local.entity.CountryEntity
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-object LocalDataSource {
+interface LocalDataSource {
+    fun getCountryInfo(): Flow<List<CountryEntity>>
 
-    private lateinit var database: AppDatabase
+}
+class LocalDataSourceImpl @Inject constructor (
+    private val context: Context
+): LocalDataSource {
 
-    fun setAppDatabase(context: Context) {
-        database = AppDatabase.getInstance(context)
+    private val database: AppDatabase by lazy {
+        AppDatabase.getInstance(context)
     }
 
-    fun getCurrencyDao(): CountryDao =
-        database.countryDao()
+    override fun getCountryInfo() =
+        database.countryDao().getCountryInfo()
 
 }

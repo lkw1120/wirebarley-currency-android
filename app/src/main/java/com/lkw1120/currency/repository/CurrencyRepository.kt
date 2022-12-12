@@ -20,34 +20,11 @@ class CurrencyRepositoryImpl @Inject constructor(
     override suspend fun getCountryInfo(
 
     ): Flow<List<CountryEntity>> =
-        localDataSource.getCurrencyDao().getCountryInfo()
+        localDataSource.getCountryInfo()
 
     override suspend fun getExchangeRate(
         sender: String,
         receiver: String
-    ): Flow<String> = flow {
-
-        remoteDataSource.getApiService().getExchangeRate(sender, receiver).let {
-            if(it.isSuccessful) {
-                emit(it.body()!!)
-            }
-        }
-
-
-        /**
-         * API 횟수제한으로 인한 테스트용 데이터
-         *
-        val json = "{\n" +
-                "    \"success\": true,\n" +
-                "    \"timestamp\": 1670566142,\n" +
-                "    \"source\": \"USD\",\n" +
-                "    \"quotes\": {\n" +
-                "        \"USDJPY\": 136.140981,\n" +
-                "        \"USDKRW\": 1300.650157,\n" +
-                "        \"USDPHP\": 55.328499\n" +
-                "    }\n" +
-                "}"
-        emit(json)
-         */
-    }
+    ): Flow<String> =
+        remoteDataSource.getExchangeRate(sender, receiver)
 }
