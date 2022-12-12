@@ -171,7 +171,7 @@ class MainFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.timestampStateFlow.collectLatest {
                 val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-                binding.tvTimestampContent.text = sdf.format(it)
+                binding.tvTimestampContent.text = sdf.format(it*1000)
             }
         }
 
@@ -183,14 +183,18 @@ class MainFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.amountReceivedStateFlow.collectLatest {
-                val code = viewModel.receiverCountryStateFlow.value.code
+                val amountReceived = it.split(" ")
                 val remittance: Int = viewModel.remittanceStateFlow.value.toInt()
                 val df = DecimalFormat("#,##0.00")
                 val max = resources.getInteger(R.integer.remittance_max)
                 val min = resources.getInteger(R.integer.remittance_min)
                 binding.tvAmountReceived.text =
                     if(remittance in min..max) {
-                        resources.getString(R.string.form_amount_received, df.format(it), code)
+                        resources.getString(
+                            R.string.form_amount_received,
+                            df.format(amountReceived[0].toDouble()),
+                            amountReceived[1]
+                        )
                     }
                     else {
                         resources.getText(R.string.error_remittance_is_invalid)

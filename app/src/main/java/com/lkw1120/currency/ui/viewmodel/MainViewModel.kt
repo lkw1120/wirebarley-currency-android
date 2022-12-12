@@ -51,10 +51,10 @@ class MainViewModel @Inject constructor (
     private val _countryInfoStateFlow: MutableStateFlow<List<CountryInfo>> =
         MutableStateFlow(listOf())
 
-    val amountReceivedStateFlow: StateFlow<Double>
+    val amountReceivedStateFlow: StateFlow<String>
         get() = _amountReceivedStateFlow
-    private val _amountReceivedStateFlow: MutableStateFlow<Double> =
-        MutableStateFlow(0.0)
+    private val _amountReceivedStateFlow: MutableStateFlow<String> =
+        MutableStateFlow("")
 
 
     fun getCountryInfo() {
@@ -106,6 +106,7 @@ class MainViewModel @Inject constructor (
     fun calculateRemittance() {
         val exchangeRate = exchangeRateStateFlow.value
         val remittance = remittanceStateFlow.value
-        _amountReceivedStateFlow.value = exchangeRate*remittance
+        val receiverCode = receiverCountryStateFlow.value.code
+        _amountReceivedStateFlow.value = "${exchangeRate * remittance} $receiverCode"
     }
 }
