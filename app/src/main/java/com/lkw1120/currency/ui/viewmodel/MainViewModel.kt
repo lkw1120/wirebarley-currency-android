@@ -66,15 +66,11 @@ class MainViewModel @Inject constructor (
     }
 
     fun setSenderCountry(countryInfo: CountryInfo) {
-        viewModelScope.launch {
-            _senderCountryStateFlow.value = countryInfo
-        }
+        _senderCountryStateFlow.value = countryInfo
     }
 
     fun setReceiverCountry(countryInfo: CountryInfo) {
-        viewModelScope.launch {
-            _receiverCountryStateFlow.value = countryInfo
-        }
+        _receiverCountryStateFlow.value = countryInfo
     }
 
     fun getExchangeRate() {
@@ -98,11 +94,9 @@ class MainViewModel @Inject constructor (
     }
 
     fun setExchangeRateCode() {
-        viewModelScope.launch {
-            val senderCode = senderCountryStateFlow.value.code
-            val receiverCode = receiverCountryStateFlow.value.code
-            _exchangeRateCodeStateFlow.value = "$receiverCode/$senderCode"
-        }
+        val senderCode = senderCountryStateFlow.value.code
+        val receiverCode = receiverCountryStateFlow.value.code
+        _exchangeRateCodeStateFlow.value = "$receiverCode/$senderCode"
     }
 
     fun setRemittance(money: Double) {

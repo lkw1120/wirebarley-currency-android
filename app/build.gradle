@@ -28,6 +28,11 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -52,6 +57,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.20"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
@@ -72,6 +78,10 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     testImplementation "junit:junit:4.13.2"
+
+    testImplementation "org.mockito:mockito-inline:3.3.3"
+    androidTestImplementation "org.mockito:mockito-android:3.3.3"
+
     androidTestImplementation "androidx.test.ext:junit:1.1.4"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.0"
 }

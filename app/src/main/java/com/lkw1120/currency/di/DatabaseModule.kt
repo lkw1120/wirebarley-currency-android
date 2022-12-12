@@ -2,6 +2,7 @@ package com.lkw1120.currency.di
 
 import android.content.Context
 import com.lkw1120.currency.datasource.local.LocalDataSource
+import com.lkw1120.currency.datasource.local.LocalDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,9 +19,7 @@ class DatabaseModule {
     fun provideLocalDataSource(
         @ApplicationContext appContext: Context
     ): LocalDataSource {
-        return LocalDataSource.apply {
-            setAppDatabase(appContext)
-        }
+        return LocalDataSourceImpl(appContext)
     }
 
 }
